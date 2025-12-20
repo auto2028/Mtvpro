@@ -1060,6 +1060,9 @@ function PlayPageClient() {
 
   // 清理播放器资源的统一函数
   const cleanupPlayer = () => {
+    // 先清理Anime4K，避免GPU纹理错误
+    cleanupAnime4K();
+
     if (artPlayerRef.current) {
       try {
         // 在销毁前从弹幕插件读取最新配置并保存
