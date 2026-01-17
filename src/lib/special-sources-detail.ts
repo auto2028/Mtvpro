@@ -354,7 +354,8 @@ export async function getXiaoyaDetail(id: string): Promise<SearchResult> {
     client,
     decodedDirPath,
     config.SiteConfig.TMDBApiKey,
-    config.SiteConfig.TMDBProxy
+    config.SiteConfig.TMDBProxy,
+    config.SiteConfig.TMDBReverseProxy
   );
 
   // 获取集数列表

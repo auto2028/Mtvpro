@@ -32,6 +32,7 @@ export async function GET(request: NextRequest) {
     const config = await getConfig();
     const tmdbApiKey = config.SiteConfig.TMDBApiKey;
     const tmdbProxy = config.SiteConfig.TMDBProxy;
+    const tmdbReverseProxy = config.SiteConfig.TMDBReverseProxy;
 
     if (!tmdbApiKey) {
       return NextResponse.json({ error: 'TMDB API Key 未配置' }, { status: 400 });
@@ -42,7 +43,9 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'TMDB API Key 无效' }, { status: 400 });
     }
 
-    const url = `https://api.themoviedb.org/3/tv/${id}/season/${season}?api_key=${actualKey}&language=zh-CN`;
+    // 使用反代代理或默认 Base URL
+    const baseUrl = tmdbReverseProxy || 'https://api.themoviedb.org';
+    const url = `${baseUrl}/3/tv/${id}/season/${season}?api_key=${actualKey}&language=zh-CN`;
 
     const fetchOptions: any = tmdbProxy
       ? {

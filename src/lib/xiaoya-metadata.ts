@@ -99,7 +99,8 @@ export async function getXiaoyaMetadata(
   xiaoyaClient: XiaoyaClient,
   videoPath: string,
   tmdbApiKey?: string,
-  tmdbProxy?: string
+  tmdbProxy?: string,
+  tmdbReverseProxy?: string
 ): Promise<XiaoyaMetadata> {
   const pathParts = videoPath.split('/').filter(Boolean);
 
@@ -216,7 +217,7 @@ export async function getXiaoyaMetadata(
 
     if (!isPureNumber && !isSeasonEpisode) {
       const { searchTMDB, getTMDBImageUrl } = await import('./tmdb.search');
-      const tmdbResult = await searchTMDB(tmdbApiKey, searchQuery, tmdbProxy);
+      const tmdbResult = await searchTMDB(tmdbApiKey, searchQuery, tmdbProxy, undefined, tmdbReverseProxy);
 
       if (tmdbResult.code === 200 && tmdbResult.result) {
         return {
@@ -244,7 +245,7 @@ export async function getXiaoyaMetadata(
       .trim();
 
     const { searchTMDB, getTMDBImageUrl } = await import('./tmdb.search');
-    const tmdbResult = await searchTMDB(tmdbApiKey, searchQuery, tmdbProxy);
+    const tmdbResult = await searchTMDB(tmdbApiKey, searchQuery, tmdbProxy, undefined, tmdbReverseProxy);
 
     if (tmdbResult.code === 200 && tmdbResult.result) {
       return {

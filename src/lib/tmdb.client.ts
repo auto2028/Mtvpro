@@ -3,8 +3,8 @@
 import { HttpsProxyAgent } from 'https-proxy-agent';
 import nodeFetch from 'node-fetch';
 
-// TMDB API 默认 Base URL
-const DEFAULT_TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+// TMDB API 默认 Base URL（不包含 /3/，由程序拼接）
+const DEFAULT_TMDB_BASE_URL = 'https://api.themoviedb.org';
 
 // TMDB API Key 轮询管理
 let currentKeyIndex = 0;
@@ -97,7 +97,7 @@ export async function getTMDBUpcomingMovies(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/movie/upcoming?api_key=${actualKey}&language=zh-CN&page=${page}&region=${region}`;
+    const url = `${baseUrl}/3/movie/upcoming?api_key=${actualKey}&language=zh-CN&page=${page}&region=${region}`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -152,7 +152,7 @@ export async function getTMDBUpcomingTVShows(
 
     // 使用 on_the_air 接口获取正在播出的电视剧
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/tv/on_the_air?api_key=${actualKey}&language=zh-CN&page=${page}`;
+    const url = `${baseUrl}/3/tv/on_the_air?api_key=${actualKey}&language=zh-CN&page=${page}`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -290,7 +290,7 @@ export async function getTMDBVideos(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/${mediaType}/${mediaId}/videos?api_key=${actualKey}`;
+    const url = `${baseUrl}/3/${mediaType}/${mediaId}/videos?api_key=${actualKey}`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -344,7 +344,7 @@ export async function getTMDBTrendingContent(
 
     // 获取本周热门内容（电影+电视剧）
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/trending/all/week?api_key=${actualKey}&language=zh-CN`;
+    const url = `${baseUrl}/3/trending/all/week?api_key=${actualKey}&language=zh-CN`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -478,7 +478,7 @@ export async function searchTMDBMulti(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/search/multi?api_key=${actualKey}&language=zh-CN&query=${encodeURIComponent(query)}&page=1`;
+    const url = `${baseUrl}/3/search/multi?api_key=${actualKey}&language=zh-CN&query=${encodeURIComponent(query)}&page=1`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -531,7 +531,7 @@ export async function getTMDBMovieRecommendations(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/movie/${movieId}/recommendations?api_key=${actualKey}&language=zh-CN&page=1`;
+    const url = `${baseUrl}/3/movie/${movieId}/recommendations?api_key=${actualKey}&language=zh-CN&page=1`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -584,7 +584,7 @@ export async function getTMDBTVRecommendations(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/tv/${tvId}/recommendations?api_key=${actualKey}&language=zh-CN&page=1`;
+    const url = `${baseUrl}/3/tv/${tvId}/recommendations?api_key=${actualKey}&language=zh-CN&page=1`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -637,7 +637,7 @@ export async function getTMDBMovieDetails(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/movie/${movieId}?api_key=${actualKey}&language=zh-CN`;
+    const url = `${baseUrl}/3/movie/${movieId}?api_key=${actualKey}&language=zh-CN`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {
@@ -690,7 +690,7 @@ export async function getTMDBTVDetails(
     }
 
     const baseUrl = reverseProxyBaseUrl || DEFAULT_TMDB_BASE_URL;
-    const url = `${baseUrl}/tv/${tvId}?api_key=${actualKey}&language=zh-CN`;
+    const url = `${baseUrl}/3/tv/${tvId}?api_key=${actualKey}&language=zh-CN`;
     const fetchOptions: any = proxy
       ? {
           agent: new HttpsProxyAgent(proxy, {

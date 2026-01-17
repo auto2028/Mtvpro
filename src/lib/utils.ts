@@ -46,7 +46,19 @@ export function processImageUrl(originalUrl: string): string {
     return originalUrl;
   }
 
-  // 仅处理豆瓣图片代理
+  // 处理 TMDB 图片 URL 替换
+  if (originalUrl.includes('image.tmdb.org')) {
+    if (typeof window !== 'undefined') {
+      const tmdbImageBaseUrl = localStorage.getItem('tmdbImageBaseUrl') || 'https://image.tmdb.org';
+      // 只有当用户设置了不同的 baseUrl 时才进行替换
+      if (tmdbImageBaseUrl !== 'https://image.tmdb.org') {
+        return originalUrl.replace('https://image.tmdb.org', tmdbImageBaseUrl);
+      }
+    }
+    return originalUrl;
+  }
+
+  // 处理豆瓣图片代理
   if (!originalUrl.includes('doubanio.com')) {
     return originalUrl;
   }
