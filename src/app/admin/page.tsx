@@ -33,6 +33,7 @@ import {
   ExternalLink,
   FileText,
   FolderOpen,
+  Globe,
   Mail,
   Palette,
   Settings,
@@ -11318,7 +11319,7 @@ function AdminPageClient() {
             <CollapsibleTab
               title='网络直播配置'
               icon={
-                <Tv size={20} className='text-gray-600 dark:text-gray-400' />
+                <Globe size={20} className='text-gray-600 dark:text-gray-400' />
               }
               isExpanded={expandedTabs.webLive}
               onToggle={() => toggleTab('webLive')}

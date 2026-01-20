@@ -2,7 +2,7 @@
 
 'use client';
 
-import { Cat, Clover, Film, FolderOpen, Home, Menu, Radio, Search, Star, Tv, Users } from 'lucide-react';
+import { Cat, Clover, Film, FolderOpen, Globe, Home, Menu, Search, Star, Tv, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import {
@@ -143,12 +143,12 @@ const Sidebar = ({ onToggle, activePath = '/' }: SidebarProps) => {
       href: '/douban?type=show',
     },
     {
-      icon: Radio,
+      icon: Tv,
       label: '电视直播',
       href: '/live',
     },
     {
-      icon: Radio,
+      icon: Globe,
       label: '网络直播',
       href: '/web-live',
     },
@@ -180,12 +180,12 @@ const Sidebar = ({ onToggle, activePath = '/' }: SidebarProps) => {
         href: '/douban?type=show',
       },
       {
-        icon: Radio,
+        icon: Tv,
         label: '电视直播',
         href: '/live',
       },
       {
-        icon: Radio,
+        icon: Globe,
         label: '网络直播',
         href: '/web-live',
       },
